@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html >
+
+<head>
+	<title>Mantenimiento de Productos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<center>
+			<h1>Mantenimiento de Productos</h1>
+		</center>
+		<form th:action="@{/actualizar}" method="post" th:object="${p}" enctype="multipart/form-data">
+			<div class="mb-4">
+				<b><label for="inputCodigo">Código</label></b>
+				<input type="text" th:field="*{codigoProducto}" class="form-control" id="inputCodigo" readonly>
+			</div>
+
+			<div class="mb-4">
+				<b><label for="inputNombre">Nombre del Producto</label></b>
+				<input type="text" th:field="*{nombreProducto}" class="form-control" id="inputNombre">
+			</div>
+
+			<div class="mb-4">
+				<b><label for="inputDescripcion">Descripción del Producto</label></b>
+				<input type="text" th:field="*{descripcion}" class="form-control" id="inputDescripcion">
+			</div>
+
+			<div class="row g-3">
+				<div class="col-md-6 ; mb-4">
+					<b><label for="inputCategoria">Categoría</label></b>
+					<select id="inputCategoria" class="form-control" th:field="*{categoria.idcategoria}">
+						<option value="-1"  selected>Seleccione...</option>
+						<option th:each="categoria : ${lstCategoria}" th:value="${categoria.idcategoria}"
+							th:text="${categoria.nombreCategoria}"></option>
+					</select>
+				</div>
+
+				<div class="col-md-6 ; mb-4">
+					<b> <label for="inputMarca">Marca del Producto</label></b>
+					<select id="inputMarca" class="form-control" th:field="*{marca.idmarca}">
+						<option value="-1"  selected>Seleccione...</option>
+						<option th:each="marca : ${lstMarca}" th:value="${marca.idmarca}"
+							th:text="${marca.nombreMarca}">
+						</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row g-3">
+				<div class="col-md-6 ; mb-4">
+					<b><label for="inputPrecio">Precio del Producto</label></b>
+					<input type="text" th:field="*{precio}" class="form-control" id="inputPrecio">
+				</div>
+
+				<div class="col-md-6 ; mb-4">
+					<b><label for="inputStock">Stock del Producto</label></b>
+					<input type="number" th:field="*{stock}" class="form-control" id="inputStock">
+				</div>
+			</div>
+
+			<div class="row g-3">
+				<div class="col-md-6 ; mb-4">
+					<b><label for="inputEstado">Estado del Producto</label></b>
+					<select id="inputEstado" class="form-control" th:field="*{estado.idestado}">
+						<option value="-1"  selected>Seleccione...</option>
+						<option th:each="estado : ${lstEstado}" th:value="${estado.idestado}"
+							th:text="${estado.nombreEstado}"></option>
+					</select>
+				</div>
+			</div>
+
+			<input type="hidden" name="id" th:field="*{id}" th:value="${p.id}" />
+
+			<div>
+				<button type="submit" class="btn btn-primary" name="type" value="reg">Actualizar Producto</button>
+			</div>
+		</form>
+		<form action="/eliminar" method="post">
+			<input type="hidden" name="id" th:value="${p.id}" />
+			<button type="submit" class="btn btn-danger">Eliminar</button>
+			<a href="/listadoprods" class="btn btn-primary">Listado</a>
+			<a href="/mantenimiento" class="btn btn-success">Limpiar</a>
+			<a href="/iniciarLogin" class="btn btn-danger">Cerrar Sesión</a>
+		</form>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	var tituloMensaje = "[[${tituloMensaje}]]";
+	var mensaje = "[[${mensaje}]]";
+	var tipoMensaje = "[[${tipoMensaje}]]";
+
+	document.addEventListener('DOMContentLoaded', function () {
+		if (tipoMensaje === "success") {
+			Swal.fire({
+				icon: 'success',
+				title: tituloMensaje,
+				text: mensaje
+			});
+		} else if (tipoMensaje === "error") {
+			Swal.fire({
+				icon: 'error',
+				title: tituloMensaje,
+				text: mensaje
+			});
+		}
+	});
+</script>
+
+</html>
