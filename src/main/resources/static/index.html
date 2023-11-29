@@ -1,460 +1,159 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../css/estilos.css">
-	<title>Tienda de equipos electricos y electronicos</title>
-	<script src="/jquery-3.2.1.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoStore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-
 <body>
-	<!--colocamos el video-->
-	<div class="overla"></div>
-	<video muted autoplay loop playinline preload="auto">
-		<source src="../video/video.mp4">
-	</video>
+    <!--barra de navegacion-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <section class="container">
+                <a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0  text-black text-decoration-none p-2" href="index.html"><img src="iconos/logo.png" alt="">TecnoStore</a>
+               <div class="order-lg-2 nav-btns">
+               
+                <a href="/iniciarLogin" class="btn position-relative m-2 ">
+						<i class="fa fa-user"></i>
+					</a>
+                
+                <button class="navbar-toggler border-0 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                </div>
+                <div class="collapse navbar-collapse order-lg-1" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto text-center ">
+                    <li class="nav-item px-2 py-2"><a class="nav-link text-uppercase active" aria-current="page" href="#">Inicio</a></li>
+                    <li class="nav-item px-2 py-2"><a class="nav-link text-uppercase active" aria-current="page" href="quienesSomos.html">Quienes Somos</a></li>
+                    <li class="nav-item px-2 py-2"><a class="nav-link text-uppercase active" aria-current="page" href="#">Productos</a></li>
+                </ul>
+                </div>
+        </section>
+    </nav>
+    <!--banner-->
+    <header id="header" class=" carousel slide" data-bs-ride="carousel">
+    
+    </header>
+    <!--contenido de los productos-->
+    <section id="collection" class="py-5">
+        <div class="container">
+            <div class="title text-center">
+                <h2 class="position-relative d-inline-block fw-bold">
+                    Ofertas
+                </h2>
+            </div>
+              <form  method="post" th:object="${p}">
+            <div class="collection-list mt-4 row" >
+                <div class="col-md-6 col-lg-4 col-xl-3 p-2" th:each="producto : ${lstProductos}">
 
-	<nav class="menu" id="menu">
+                    <div class="collection-img position-relative ">
+                        <img th:src="@{'./imagenes/' + ${producto.codigoProducto} + '.png'}" alt="" class="w-100">
 
-		<!--codigo logo-->
-		<div class="logo">
-			<img src="../imagenes/logo.jpg" alt="">
-		</div>
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1"  th:text="${producto.nombreProducto}"></p>
+                            <span class="fw-bold " th:text="${producto.precio}"></span>
+                    </div>
+                </div>
+               </div>
+          </form>
+        </div>
+    </section>
 
-		<div class="contenedor contenedor-botones-menu">
-			<button id="btn-menu-barras" class="btn-menu-barras"><i class="fas fa-bars"></i></button>
-			<button id="btn-menu-cerrar" class="btn-menu-cerrar"><i class="fas fa-times"></i></button>
-		</div>
+    <section class="categorias container fw-bold fs-5">
+        <div class="row">
+            <div class="w-100 col text-center">
+                <img class="w-100 position-relative" src="./imagenes/mouse_section.jpg" alt="">
+                <a class="text-decoration-none text-black " href="#">Mouse</a>
+            </div>
+            <div class=" w-100 col text-center">
+                <img class="w-100" src="./imagenes/laptop_section.jpg" alt="">
+                <a class="text-decoration-none text-black " href="#">Laptops</a>
+            </div>
+         
+                <div class="w-100 col text-center">
+                    <img class="w-100" src="./imagenes/procesador_section.jpg" alt="">
+                    <a class="text-decoration-none text-black " href="#">Procesadores</a>
+                 </div>
+                 <div class=" w-100 col text-center">
+                     <img class="w-100" src="./imagenes/audifonos_sectionm.jpg" alt="">
+                     <a class="text-decoration-none text-black " href="#">Audifonos</a>
+                 </div>
+        </div>
+    </section>
 
-		<div class="contenedor contenedor-enlaces-nav">
-			<div class="btn-departamentos" id="btn-departamentos">
-				<p>Todos las: <span>Categorias</span></p>
-				<i class="fas fa-caret-down"></i>
-			</div>
+    <section id="collection" class="py-5">
+        <div class="container">
+            <div class="title text-center">
+                <h2 class="position-relative d-inline-block fw-bold">
+                    Nuevos Productos
+                </h2>
+            </div>
+            <form  method="post" th:object="${p}">
+            <div class="collection-list mt-4 row" >
+                <div class="col-md-6 col-lg-4 col-xl-3 p-2" th:each="producto : ${lstProductos}">
 
-			<div class="enlaces">
+                    <div class="collection-img position-relative ">
+                        <img th:src="@{'/imagenes/' + ${producto.codigoProducto} + '.png'}" alt="" class="w-100">
 
-				<a target="_blank" href="../paginas/index.html">Inicio</a>
-				<a target="_blank" href="../Tienda.html">Tienda</a>
-				<a target="_blank" href="../Promociones.html">Promociones</a>
-				<a target="_blank" href="../carrito.html">Carrito</a>
-				<a href="/iniciarLogin">Login</a>
-				<a target="_blank" href="../ayuda.html">Ayuda</a>
-			</div>
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1"  th:text="${producto.nombreProducto}"></p>
+                            <span class="fw-bold " th:text="${producto.precio}"></span>
+                    </div>
+                </div>
+               </div>
+          </form>
+        </div>
+    </section>
+</div>
 
-		</div>
-
-		<div class="contenedor contenedor-grid">
-			<div class="grid" id="grid">
-				<div class="categorias">
-					<button class="btn-regresar"><i class="fas fa-arrow-left"></i> Regresar</button>
-					<h3 class="subtitulo">Categorias</h3>
-
-					<a href="../Tienda.html" data-categoria="Aparato Médicos">Aparato Médicos <i
-							class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Instrumentos de vigilancia o control">Instrumentos de
-						vigilancia o control <i class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Herramientas eléctricas o electrónicas">Herramientas
-						eléctricas o electrónicas <i class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Aparatos de alumbrado">Aparatos de alumbrado<i
-							class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Equipos de informática y telecomunicaciones">Equipos de
-						informática y telecomunicaciones<i class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Grandes electrodomésticos">Grandes electrodomésticos <i
-							class="fas fa-angle-right"></i></a>
-					<a href="../Tienda.html" data-categoria="Pequeños electrodomésticos">Pequeños electrodomésticos <i
-							class="fas fa-angle-right"></i></a>
-				</div>
-
-				<div class="contenedor-subcategorias">
-					<div class="subcategoria " data-categoria="Aparato Médicos">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Aparato Médicos</h3>
-							<a href="#">ventiladores pulmonares</a>
-							<a href="#">Aparatos de radioterapia</a>
-							<a href="#">Aparatos de cardiología</a>
-							<a href="#">Aparatos de diálisis</a>
-							<a href="#">Aparatos de medicina nuclear</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href=""> <!--preva-->
-								<img src="../imagenes/Ventilador-1.png" alt="">
-								<div class="capa">
-								</div>
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-
-								<img src="../imagenes/radioterapia-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/cardilogia-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/dialicis-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/medicina-4.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Instrumentos de vigilancia o control">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Instrumentos de vigilancia o control</h3>
-							<a href="#">Detector de metales</a>
-							<a href="#">termostatos y otros aparatos de medición</a>
-							<a href="#">medidor digital</a>
-							<a href="#">Camaras HD </a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="../imagenes/camara-1.png" alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-
-								<img src="../imagenes/detector-1png.jpg" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/termometro-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/medidor-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/camarae-4.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Herramientas eléctricas o electrónicas">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Herramientas eléctricas o electrónicas</h3>
-							<a href="#">Taladradoras</a>
-							<a href="#"> máquinas de coser</a>
-							<a href="#">Sierra Circular</a>
-							<a href="#">amoladora</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="../imagenes/moladora-1.png" alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-								<img src="../imagenes/taladro-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/coser-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/sierra-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/mola-4.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Pequeños electrodomésticos">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Pequeños electrodomésticos</h3>
-							<a href="#">Planchas</a>
-							<a href="#">freidoras</a>
-							<a href="#">tostadoras</a>
-							<a href="#">cuchillos eléctricos</a>
-							<a href="#">molinillos</a>
-							<a href="#">balanzas</a>
-							<a href="#">relojes</a>
-							<a href="#">secadora</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="../imagenes/placha-1.png " alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-								<img src="../imagenes/freidora-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/tostadora-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/balaza-4.png" alt="">
-							</a>
-							<a href="#">
-								<img src="..//imagenes/secadora-5.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Equipos de informática y telecomunicaciones">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Equipos de informática y telecomunicaciones</h3>
-							<a href="#">Ordenadores</a>
-							<a href="#">impresoras</a>
-							<a href="#">teléfonos </a>
-							<a href="#">Parlantes</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="../imagenes/odenador-1.png" alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-								<img src="../imagenes/impresora-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/iphone-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/parlantes-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/laptop-5.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Grandes electrodomésticos">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Grandes electrodomésticos</h3>
-							<a href="#">lavadoras</a>
-							<a href="#">cocinas</a>
-							<a href="#">microondas</a>
-							<a href="#">Refrigeradoras</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="..//imagenes/lavadoras-1.png" alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-								<img src="../imagenes/cocina-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/microondas-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/refri-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/congeladora-4.png" alt="">
-							</a>
-						</div>
-					</div>
-
-					<div class="subcategoria" data-categoria="Aparatos de alumbrado">
-						<div class="enlaces-subcategoria">
-							<button class="btn-regresar"><i class="fas fa-arrow-left"></i>Regresar</button>
-							<h3 class="subtitulo">Aparatos de alumbrado</h3>
-							<a href="#">lamparas</a>
-							<a href="#">Luces Led</a>
-						</div>
-
-						<div class="banner-subcategoria">
-							<a href="#">
-								<img src="../imagenes/lampara-1.png" alt="">
-							</a>
-						</div>
-
-						<div class="galeria-subcategoria">
-							<a href="#">
-								<img src="../imagenes/lucez-1.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/lucez-2.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/luce-3.png" alt="">
-							</a>
-							<a href="#">
-								<img src="../imagenes/luce-4.png" alt="">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</nav>
-
-
-	<main class="contenedor">
-		<article>
-			<h1 class="h1">FREAKY STORE</h1>
-			<img id="imgcab" src="../imagenes/ban1.jpg" />
-
-		</article>
-
-
-		<article id="article">
-			<!--Filtrar Elementos -->
-			<div class="wrap">
-
-				<h2 class="ofertas"> ¡¡¡Escoge lo mejor para tí!!!</h2>
-
-				<div class="store-wrapper">
-					<div class="category_list">
-						<!--Borramos el href="#"-->
-						<a class="category_item" category="all">Todo</a>
-						<a class="category_item" category="ordenadores">Laptops</a>
-						<a class="category_item" category="laptops">Celulares</a>
-						<a class="category_item" category="smartphones">Smartphones</a>
-						<a class="category_item" category="monitores">Monitores</a>
-						<a class="category_item" category="audifonos">Audifonos</a>
-					</div>
-					<section class="products-list">
-
-						<div class="product-item" category="laptops">
-							<h1>-45%</h1>
-							<img src="../imagenes/vivo.png" alt="">
-
-							<a href="#">Vivo X80 Pro -9.0</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-40%</h1>
-							<img src="../imagenes/asus ROG.png" alt="">
-							<a href="#">Asus ROG Phone 6 Pro </a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-8%</h1>
-							<img src="../imagenes/xiaomi12.png" alt="">
-							<a href="#">Xiaomi 12 Lite -8,5</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-10%</h1>
-							<img src="../imagenes/realme9.png" alt="">
-							<a href="#">Realme 9i -8.2</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-30%</h1>
-							<img src="../imagenes/ihone 14.jpeg" alt="">
-							<a href="#">iPhone 14 -8.9</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-40%</h1>
-							<img src="../imagenes/huaweip50.png" alt="">
-							<a href="#">Huawei P50 Pro -8.3</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-25%</h1>
-							<img src="../imagenes/motorola.png" alt="">
-							<a href="#">Motorola Edge 30 Pro</a>
-						</div>
-						<div class="product-item" category="laptops">
-							<h1>-22%</h1>
-							<img src="../imagenes/sansung1.png" alt="">
-							<a href="#">Samsung Galaxy</a>
-						</div>
-						<div class="product-item" category="smartphones">
-							<h1>-5%</h1>
-							<img src="../imagenes/camarae-4.png" alt="">
-							<a href="#">Samsung Galaxy</a>
-						</div>
-						<div class="product-item" category="smartphones">
-							<h1>-25%</h1>
-							<img src="../imagenes/equipos4.jpg" alt="">
-							<a href="#">Iphone 7</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>30%</h1>
-							<img src="../imagenes/Aple.png" alt="">
-							<a href="#">Aple Mac Book Pro</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>40%</h1>
-							<img src="../imagenes/asus.png" alt="">
-							<a href="#">Asus Zenbook</a>
-						</div>
-						<!--ejemplo-->
-						<div class="product-item" category="ordenadores">
-							<h1>60%</h1>
-							<img src="../imagenes/Dell.png" alt="">
-							<a href="#">DELL XPS</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>45%</h1>
-							<img src="../imagenes/hp.png" alt="">
-							<a href="#">HP 15 DB</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>31%</h1>
-							<img src="../imagenes/Acer.png" alt="">
-							<a href="#">Acer CromeBook</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>20%</h1>
-							<img src="../imagenes/lenovo yoga.png" alt="">
-							<a href="#">Lenovo Yoga</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>19%</h1>
-							<img src="../imagenes/SURFACE.png" alt="">
-							<a href="#">Surface Pro 7</a>
-						</div>
-						<div class="product-item" category="ordenadores">
-							<h1>17%</h1>
-							<img src="../imagenes/huawei.png" alt="">
-							<a href="#">Matebook X Pro</a>
-						</div>
-						<div class="product-item" category="monitores">
-							<h1>5%</h1>
-							<img src="../imagenes/radioterapia-1.png" alt="">
-							<a href="#">Monitor Asus</a>
-						</div>
-						<div class="product-item" category="audifonos">
-							<h1>10%</h1>
-							<img src="../imagenes/camara-1.png" alt="">
-							<a href="#">Audifonos JBL</a>
-
-						</div>
-					</section>
-				</div>
-			</div>
-
-		</article>
-		<!--falta desarrollar-->
-
-	</main>
-	<main id="man">
-
-	</main>
-
-
-
-	<script src="https://kit.fontawesome.com/2c36e9b7b1.js"></script>
-	<script src="/script.js"></script>
-
-
+<footer class="bg-dark text-white text-center">
+    <section class="container" >
+       <div class="row justify-content-around ">
+        <div class="col-md-6 col-lg p-3">
+            <div class="">
+                <img class="w-75  m-3 " src="imagenes/logo.png" alt=""> 
+            </div>
+            <div class="fw-bold row">
+                <a class="text-decoration-none text-white m-2 fs-5" href="https://facebook.com"><i class="fa-brands fa-facebook m-1" style="color: #28529a;"></i>Facebook</a>
+                <a class="text-decoration-none text-white m-2 fs-5" href="#"><i class="fa-brands fa-whatsapp m-1" style="color: #218246;"></i>Whatsapp</a>
+                <a class="text-decoration-none text-white m-2 fs-5" href="https://www.instagram.com"><i class="fa-brands fa-instagram m-1" style="color: #c55e8a;"></i>Instagram</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg p-3">
+            <h3 class="fw-bold ">VISITANOS</h3>
+            <p>Av. Inca Garcilaso de la Vega 1251, Lima 15001</p>
+            <p>contacto@tecnostore.pe</p>
+            <iframe class="rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.833476982906!2d-77.03782600000001!3d-12.054975999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c660328b21%3A0xdbb85e0eb16dea3b!2sAv.%20Garcilaso%20de%20la%20Vega%201251%2C%20Lima%2015001!5e0!3m2!1ses-419!2spe!4v1700184674466!5m2!1ses-419!2spe" width="300" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="col-md-6 col-lg">
+            <h3 class="fw-bold p-3">HORARIOS DE ATENCION</h3>
+            <ul>
+                <li class="fw-bold">Lunes - Viernes:</li>
+                <li> 8:00AM - 10:00PM</li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-lg fw-bold p-3">
+            <h3 class="fw-bold">SUSCRIBETE</h3>
+            <form action="">
+                <li>
+                    <label>Email</label>
+                    <input class="p-2 rounded " name="correo" placeholder="Ingrese su correo">
+                </li>
+                <li class="block">
+                    <button class="btn btn-danger fw-bold m-2">
+                        Enviar
+                    </button>
+                </li>
+            </form>
+        </div>
+       </div>
+    </section>
+</footer>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>
