@@ -146,7 +146,17 @@ public class TecnoController {
 		return "listadoProductos";
 
 	}
+	@GetMapping("/catalogo")
+	public String mostrarPaginaCatalogo(Model model) {
 
+		model.addAttribute("lstProductos", repoProducto.findAll());
+		model.addAttribute("lstCategoria", repoCategoria.findAll());
+		model.addAttribute("lstEstado", repoEstado.findAll());
+		model.addAttribute("lstMarca", repoMarca.findAll());
+
+		return "catalogo";
+
+	}
 	// ----------------------------- Editar producto-----
 
 	@GetMapping("/editar/{id}")

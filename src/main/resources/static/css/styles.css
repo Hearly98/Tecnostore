@@ -45,7 +45,9 @@ line-height: 1em;
 color: #d71942;
 }
 
-
+.logo{
+	width: 15rem;
+}
 #header{
     background: url("../imagenes/banner_1.png") top/contain no-repeat;
     height: 35em;
