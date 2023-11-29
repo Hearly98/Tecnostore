@@ -1,6 +1,11 @@
 package com.tecnostore.controller;
 
+import java.io.OutputStream;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +24,11 @@ import com.tecnostore.repository.MarcaRepository;
 import com.tecnostore.repository.ProductoRepository;
 import com.tecnostore.service.UsuarioService;
 
+import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
 @Controller
 public class TecnoController {
 
@@ -32,6 +42,10 @@ public class TecnoController {
 	private MarcaRepository repoMarca;
 	@Autowired
 	private ProductoRepository repoProducto;
+	@Autowired
+	private DataSource dataSource; // javax.sql
+	@Autowired
+	private ResourceLoader resourceLoader; // core.io
 
 	// ------------------------------------ LOGIN
 	// CONTROLLER------------------------------------------------
@@ -273,7 +287,27 @@ public class TecnoController {
 	}
 	
 	//------------------ Menu
+	@GetMapping("/reporteProductos")
+	public void reporteListadoProductos(HttpServletResponse response) {
+		//reporte que descarga directamente el archivo
+	response.setHeader("Content-Disposition", "attachment; filename=\"reporte_lstproductos.pdf\";");
+	//reporte que muestre temporalmente el archivo
+	response.setHeader("Content-Disposition", "inline;");
+	response.setContentType("application/pdf");
+	try {
+		//establecer el archivo .jasper a abrir
+	String ru = resourceLoader.getResource("classpath:Tecnostore.jasper").getURI().getPath();
+	//combina el .jasper con la Data
+	JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
+	//genera el archivo temporal
+	OutputStream outStream = response.getOutputStream();
+	//visualiza el archivo
+	JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 	
+	} catch (Exception e) {
+	e.printStackTrace();
+	}
+	}
 	@GetMapping("/menu")
 	public String abrirMenu() {
 		return "Menu";
