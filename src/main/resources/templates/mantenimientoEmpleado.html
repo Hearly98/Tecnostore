@@ -15,7 +15,7 @@
 		<center>
 			<h1>Mantenimiento de Empleados</h1>
 		</center>
-		<form th:action="@{/actualizar}" method="post" th:object="${empleado}" enctype="multipart/form-data">
+		<form th:action="@{/registrarEmpleado}" method="post" th:object="${empleado}" enctype="multipart/form-data">			
 			<div class="mb-4">
 				<b><label for="inputNombre">Nombre del Empleado</label></b>
 				<input type="text" th:field="*{nomEmpleado}" class="form-control" id="inputNombre">
@@ -60,11 +60,13 @@
 			<div>
 				<button type="submit" class="btn btn-primary" name="type" value="reg">Registrar
 					Empleado</button>
-				<button type="submit" class="btn btn-primary" name="type" value="act">Actualizar
-					Empleado</button>
 				<a th:href="@{'/reporteEmpleados'}" target="_blank" class="btn btn-primary p-2">
 					<i class="fa-regular fa-file-lines" style="color: #fff;"></i> 
 					Reporte de Empleados
+				</a>
+				<a th:href="@{'/graficoSexo'}" target="_blank" class="btn btn-primary p-2">
+					<i class="fa-regular fa-file-lines" style="color: #fff;"></i> 
+					Grafico de Género
 				</a>
 			</div>
 		</form>

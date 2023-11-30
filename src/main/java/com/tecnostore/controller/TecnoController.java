@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tecnostore.model.Empleado;
 import com.tecnostore.model.Producto;
 import com.tecnostore.model.Usuario;
+import com.tecnostore.repository.CargoRepository;
 import com.tecnostore.repository.CategoriaRepository;
+import com.tecnostore.repository.EmpleadoRepository;
 import com.tecnostore.repository.EstadoRepository;
 import com.tecnostore.repository.MarcaRepository;
 import com.tecnostore.repository.ProductoRepository;
@@ -48,6 +51,8 @@ public class TecnoController {
 	private DataSource dataSource; // javax.sql
 	@Autowired
 	private ResourceLoader resourceLoader; // core.io
+	
+	
 
 	// ------------------------------------ LOGIN
 	// CONTROLLER------------------------------------------------
@@ -203,6 +208,9 @@ public class TecnoController {
 		return "mantenimiento";
 	}
 
+	
+	
+	
 	// -----------------------------------Eliminar-----------------------------------------
 
 	@PostMapping("/eliminar")
@@ -246,6 +254,7 @@ public class TecnoController {
 		return "registroProductos";
 	}
 	
+
 	@PostMapping("/grabarProductos")
 	public String grabarProductos(@ModelAttribute Producto producto, Model model) {
 		
@@ -270,6 +279,7 @@ public class TecnoController {
 		//retorno
 		return "mantenimiento";
 	}
+
 	
 	
 	// ------------------------ Actualizar producto----------------------------
@@ -340,4 +350,37 @@ public class TecnoController {
 	public String abrirMenu() {
 		return "Menu";
 	}
+
+	
+	@GetMapping("/grafico")
+	public void reporteGrafico(HttpServletResponse response) {
+		response.setHeader("Content-Disposition", "inline;");
+		response.setContentType("application/pdf");
+		try {
+			String ru = resourceLoader.getResource("classpath:reporteGrafico.jasper").getURI().getPath();
+			JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
+			OutputStream outStream = response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+
+	
+	@GetMapping("/graficoSexo")
+	public void reporteGraficoSexo(HttpServletResponse response) {
+		response.setHeader("Content-Disposition", "inline;");
+		response.setContentType("application/pdf");
+		try {
+			String ru = resourceLoader.getResource("classpath:reporteSexo.jasper").getURI().getPath();
+			JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
+			OutputStream outStream = response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
