@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --lg-font: 'Kaisei Tokumin', serif;
+    --sm-font: 'Poppins',sans-serif;
+    --red:#d71942;
+}
+body {
+    background-color: #f8f9fa; /* Color de fondo gris claro */
+    color: #343a40; /* Color de texto negro */
+    font-family: var(--sm-font);
+    margin: 0;
+    padding: 0;
+}
+
+.about-img .vh-100{
+    border-radius: 10px;
+    height: 45vh!important;
+    background-size: contain;
+}
+
+.contact-form {
+    max-width: 400px;
+    margin: 0 auto;
+}    
+
+.banner{
+    width: 100%;
+    min-height: 30rem;
+    background: url("../imagenes/BANNER-ARMAR-PC.jpg") ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+.banner h2{
+color: #fff;
+font-size: 80px;
+text-transform: uppercase;
+text-align: center;
+line-height: 1em;
+}
+
+.banner h2 span{
+color: #d71942;
+}
+
+.logo{
+	width: 15rem;
+}
+#header{
+    background: url("../imagenes/banner_1.png") top/contain no-repeat;
+    height: 35em;
+
+}
+.carousel-inner h1{
+    font-size: 3.75rem;
+    font-family: var(--lg-font);
+}
+.carousel-item .btn{
+    border-color: #fff!important;
+}
+.carousel-item .btn:hover{
+    border-color:var(--red)!important;
+}
+/*boton*/
+
+.bg-primary{
+    background-color: var(--red)!important;
+}
+
+.btn:not(.nav-btns button){
+    background-color: #fff;
+    color: rgb(85, 85, 85);
+    padding: 10px 28px;
+    border-radius: 25px;
+    border: 1px solid rgb(85, 85, 85);
+}
+.btn:not(.nav-btns button):hover{
+    background-color: var(--red);
+    color: #fff;
+    border-color: var(--red)
+   
+}
+/*navbar*/
+
+.navbar{
+    box-shadow: 0 3px 9px 3px rgba(0,0,0,0.1);
+}
+
+.navbar-brand span{
+    letter-spacing: 2px;
+}
+
+.nav-link:hover{
+    color: var(--red)!important;
+}
+.nav-item{
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+
+/*Productos*/
+.title h2::before{
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 46px;
+    background-color: var(--red);
+    left: -20px;
+    top: -15%;
+    transform: translate(-50%);
+}
+
+
+.collection-img span{
+    top: 20px;
+    right: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.categorias img{
+    height: 250px;
+}
+
+footer li{
+   list-style: none;
+}
