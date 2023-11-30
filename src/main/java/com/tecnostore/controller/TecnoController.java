@@ -323,4 +323,37 @@ public class TecnoController {
 	public String abrirMenu() {
 		return "Menu";
 	}
+
+	
+	@GetMapping("/grafico")
+	public void reporteGrafico(HttpServletResponse response) {
+		response.setHeader("Content-Disposition", "inline;");
+		response.setContentType("application/pdf");
+		try {
+			String ru = resourceLoader.getResource("classpath:reporteGrafico.jasper").getURI().getPath();
+			JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
+			OutputStream outStream = response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+
+	
+	@GetMapping("/graficoSexo")
+	public void reporteGraficoSexo(HttpServletResponse response) {
+		response.setHeader("Content-Disposition", "inline;");
+		response.setContentType("application/pdf");
+		try {
+			String ru = resourceLoader.getResource("classpath:reporteSexo.jasper").getURI().getPath();
+			JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
+			OutputStream outStream = response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
