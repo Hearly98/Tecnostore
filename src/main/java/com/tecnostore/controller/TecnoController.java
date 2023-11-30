@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tecnostore.model.Producto;
 import com.tecnostore.model.Usuario;
@@ -183,7 +185,7 @@ public class TecnoController {
 		model.addAttribute("lstEstado", repoEstado.findAll());
 		model.addAttribute("lstMarca", repoMarca.findAll());
 
-		return "mantenimiento";
+		return "mantenimientoEditar";
 	}
 
 	// -------------------------------- Solo
@@ -244,45 +246,71 @@ public class TecnoController {
 		return "registroProductos";
 	}
 	
+	@PostMapping("/grabarProductos")
+	public String grabarProductos(@ModelAttribute Producto producto, Model model) {
+		
+		Producto productos = new Producto();
+
+		model.addAttribute("p", productos);
+
+		model.addAttribute("lstCategoria", repoCategoria.findAll());
+		model.addAttribute("lstEstado", repoEstado.findAll());
+		model.addAttribute("lstMarca", repoMarca.findAll());
+		
+		//acciones: obtener el objeto producto del formulario y guardar
+		
+		try { 
+			repoProducto.save(producto);
+			model.addAttribute("Mensaje","Registro OK");
+			model.addAttribute("cssmensaje", "alert alert-success");
+		}catch (Exception e) {
+			model.addAttribute("Mensaje","Error al Registrar");
+			model.addAttribute("cssmensaje", "alert alert-danger");
+		}
+		//retorno
+		return "mantenimiento";
+	}
+	
+	
 	// ------------------------ Actualizar producto----------------------------
 
 	@PostMapping("/actualizar")
-	public String actualizarProducto(@Validated @ModelAttribute("productos") Producto producto, BindingResult result, Model model) {
+	public String actualizarProducto(@Validated @ModelAttribute Producto producto, BindingResult result, Model model) {
 		
 		model.addAttribute("lstProductos", repoProducto.findAll());
 		model.addAttribute("lstCategoria", repoCategoria.findAll());
 		model.addAttribute("lstEstado", repoEstado.findAll());
 		model.addAttribute("lstMarca", repoMarca.findAll());
 		model.addAttribute("p", producto);
-
+		
 		
 		try {
 	        if (result.hasErrors()) {
 	            model.addAttribute("mensaje", "Por favor, complete todos los campos obligatorios");
 	            model.addAttribute("tipoMensaje", "error");
-	            return "mantenimiento";
+	            return "mantenimientoEditar";
 	        }
 	        
 	        Producto productoExistente = repoProducto.findById(producto.getId()).orElse(null);
 
 	        if (productoExistente != null) {
 	            repoProducto.save(producto);
-	            
+	            System.out.println(producto);
 	            model.addAttribute("tituloMensaje", "Actualización exitosa");
 	            model.addAttribute("mensaje", "El producto se actualizó correctamente");
 	            model.addAttribute("tipoMensaje", "success");
-	            return "mantenimiento";
+	            return "mantenimientoEditar";
 
 	        } else {
 	            model.addAttribute("mensaje", "No se encontró el producto para actualizar");
 	            model.addAttribute("tipoMensaje", "error");
-	            return "mantenimiento";
+	            return "mantenimientoEditar";
 	        }
 
 	    } catch (Exception e) {
 	        model.addAttribute("mensaje", "Ocurrió un error al actualizar el producto");
 	        model.addAttribute("tipoMensaje", "error");
-	        return "mantenimiento";
+	        return "mantenimientoEditar";
 	    }
 	}
 	

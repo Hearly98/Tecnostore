@@ -127,3 +127,13 @@ color: #d71942;
 footer li{
    list-style: none;
 }
+
+.menu-contReg:hover{
+	background-color: darkred !important;
+	cursor: pointer;
+}
+
+.menu-cont:hover{
+	background-color: darkorange !important;
+	cursor: pointer;
+}

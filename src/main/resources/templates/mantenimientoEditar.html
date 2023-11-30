@@ -15,7 +15,7 @@
 		<center>
 			<h1>Mantenimiento de Productos</h1>
 		</center>
-		<form action="/grabarProductos" method="POST" th:object="${p}" enctype="multipart/form-data">
+		<form action="/actualizar" method="POST" th:object="${p}" enctype="multipart/form-data">
 			<div class="mb-4">
 				<b><label for="inputCodigo">Código</label></b>
 				<input type="text" th:field="*{codigoProducto}" class="form-control" id="inputCodigo">
@@ -78,7 +78,7 @@
 			<input type="hidden" name="id" th:field="*{id}" th:value="${p.id}" />
 			</div>
 			
-				<button type="submit" class="btn btn-primary mb-2" name="btnOpcion" value="registrar">Registrar Producto</button>
+				<button type="submit" class="btn btn-primary mb-2" name="btnOpcion" value="actualizar">Actualizar Producto</button>
 				
 			
 		</form>
