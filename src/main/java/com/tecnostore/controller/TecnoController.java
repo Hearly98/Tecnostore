@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tecnostore.model.Empleado;
 import com.tecnostore.model.Producto;
 import com.tecnostore.model.Usuario;
+import com.tecnostore.repository.CargoRepository;
 import com.tecnostore.repository.CategoriaRepository;
+import com.tecnostore.repository.EmpleadoRepository;
 import com.tecnostore.repository.EstadoRepository;
 import com.tecnostore.repository.MarcaRepository;
 import com.tecnostore.repository.ProductoRepository;
@@ -46,6 +49,8 @@ public class TecnoController {
 	private DataSource dataSource; // javax.sql
 	@Autowired
 	private ResourceLoader resourceLoader; // core.io
+	
+	
 
 	// ------------------------------------ LOGIN
 	// CONTROLLER------------------------------------------------
@@ -201,6 +206,9 @@ public class TecnoController {
 		return "mantenimiento";
 	}
 
+	
+	
+	
 	// -----------------------------------Eliminar-----------------------------------------
 
 	@PostMapping("/eliminar")
@@ -243,6 +251,9 @@ public class TecnoController {
 		model.addAttribute("lstMarca", repoMarca.findAll());
 		return "registroProductos";
 	}
+	
+	
+	
 	
 	// ------------------------ Actualizar producto----------------------------
 
