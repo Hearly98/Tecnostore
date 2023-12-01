@@ -137,3 +137,12 @@ footer li{
 	background-color: darkorange !important;
 	cursor: pointer;
 }
+
+.menu-emple:hover{
+	background-color: darkgreen !important;
+	cursor: pointer;
+}
+.menu-usr:hover{
+	background-color: cadetblue !important;
+	cursor: pointer;
+}

@@ -48,17 +48,51 @@
             </div>
               <form  method="post" th:object="${p}">
             <div class="collection-list mt-4 row" >
-                <div class="col-md-6 col-lg-4 col-xl-3 p-2" th:each="producto : ${lstProductos}">
+                <div class="col-md-6 col-lg-4 col-xl-3 p-2">
 
                     <div class="collection-img position-relative ">
-                        <img th:src="@{'./imagenes/' + ${producto.codigoProducto} + '.png'}" alt="" class="w-100">
+                        <img src="./imagenes/ALMACENAMIENTO01.png" alt="" class="w-100">
 
                     </div>
                     <div class="text-center ">
-                            <p class="text-capitalize my-1"  th:text="${producto.nombreProducto}"></p>
-                            <span class="fw-bold " th:text="${producto.precio}"></span>
+                            <p class="text-capitalize my-1">Disco Duro Western 1GB</p>
+                            <span class="fw-bold ">S/1,200</span>
                     </div>
                 </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/CASE01.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">Cooler Master ARGB</p>
+                            <span class="fw-bold ">S/400</span>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/ALMACENAMIENTO02.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">Kingston Fury 2TB</p>
+                            <span class="fw-bold ">S/300</span>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/CAMARA01.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">HD Webcam Logitech C920s Pro</p>
+                            <span class="fw-bold ">S/700</span>
+                    </div>
+                </div>
+                
                </div>
           </form>
         </div>
@@ -95,15 +129,48 @@
             </div>
             <form  method="post" th:object="${p}">
             <div class="collection-list mt-4 row" >
-                <div class="col-md-6 col-lg-4 col-xl-3 p-2" th:each="producto : ${lstProductos}">
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
 
                     <div class="collection-img position-relative ">
-                        <img th:src="@{'/imagenes/' + ${producto.codigoProducto} + '.png'}" alt="" class="w-100">
+                        <img src="./imagenes/monitor-teros-2.jpg" alt="" class="w-100">
 
                     </div>
                     <div class="text-center ">
-                            <p class="text-capitalize my-1"  th:text="${producto.nombreProducto}"></p>
-                            <span class="fw-bold " th:text="${producto.precio}"></span>
+                            <p class="text-capitalize my-1">Monitor Teros 27"</p>
+                            <span class="fw-bold ">S/800</span>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/TECLADO01.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">Teclado G213 Prodigy Logitech</p>
+                            <span class="fw-bold ">S/250</span>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/MOUSE03.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">Mouse Logitech G502X</p>
+                            <span class="fw-bold ">S/105</span>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4 col-xl-3 p-2">
+
+                    <div class="collection-img position-relative ">
+                        <img src="./imagenes/CAMARA01.png" alt="" class="w-100">
+
+                    </div>
+                    <div class="text-center ">
+                            <p class="text-capitalize my-1">HD Webcam Logitech C920s Pro</p>
+                            <span class="fw-bold ">S/700</span>
                     </div>
                 </div>
                </div>

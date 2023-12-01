@@ -251,7 +251,7 @@ public class TecnoController {
 		model.addAttribute("lstCategoria", repoCategoria.findAll());
 		model.addAttribute("lstEstado", repoEstado.findAll());
 		model.addAttribute("lstMarca", repoMarca.findAll());
-		return "registroProductos";
+		return "mantenimiento";
 	}
 	
 
@@ -270,11 +270,12 @@ public class TecnoController {
 		
 		try { 
 			repoProducto.save(producto);
-			model.addAttribute("Mensaje","Registro OK");
-			model.addAttribute("cssmensaje", "alert alert-success");
+			 model.addAttribute("tituloMensaje", "Registro exitoso");
+	         model.addAttribute("mensaje", "El producto se registró correctamente");
+			 model.addAttribute("tipoMensaje", "success");
 		}catch (Exception e) {
-			model.addAttribute("Mensaje","Error al Registrar");
-			model.addAttribute("cssmensaje", "alert alert-danger");
+			model.addAttribute("mensaje","Error al Registrar");
+			 model.addAttribute("tipoMensaje", "error");
 		}
 		//retorno
 		return "mantenimiento";
@@ -339,7 +340,7 @@ public class TecnoController {
 	JasperPrint jasperPrint = JasperFillManager.fillReport(ru, null, dataSource.getConnection());
 	//genera el archivo temporal
 	OutputStream outStream = response.getOutputStream();
-	//visualiza el archivo
+	//visualiza el archivo 
 	JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 	
 	} catch (Exception e) {
